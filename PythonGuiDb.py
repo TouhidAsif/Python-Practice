@@ -1,4 +1,17 @@
 from tkinter import *
+import MySQLdb
+def saveData():
+    con = MySQLdb.Connect(host="localhost", user="root", password="root", database="pythondb")
+    print("connection success...")
+    sql = "insert into employee values ('%d','%s','%s','%d')"
+    cur=con.cursor()
+    value=(int(txtid.get()),txtename.get(),txtdept.get(),int(txtsalary.get()))
+    cur.execute(sql % value)
+    con.commit()
+    print("record inserted", cur.rowcount)
+    con.close()
+    print('connection close....')
+
 
 myroot = Tk()
 myroot.geometry('600x600')
@@ -29,5 +42,8 @@ lb4.grid(row=3, column=0)
 esalary = StringVar()
 txtsalary = Entry(textvariable=esalary, font=('Arial,10,bold'), fg="blue")
 txtsalary.grid(row=3, column=1)
+
+btnsave=Button(text='Save',font=('Arial,10,bold'), fg="black",command=saveData)
+btnsave.grid(row=6,column=1)
 
 myroot.mainloop()
