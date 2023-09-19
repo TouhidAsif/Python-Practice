@@ -30,9 +30,15 @@ class EmployeeDao:
             return E1
         except Exception as msg:
             print(msg)
-    def deleteEmployee(self,emid):
+    def deleteEmployee(self,empid):
         sql="delete from employee where id=%d"
-        self.cur.execute(sql % emid)
+        self.cur.execute(sql % empid)
+        self.con.commit()
+
+    def updateEmployee(self,E):
+        sql="update employee set name='%s',dept='%s',salary='%d' where id='%d'"
+        value=(E.getname(),E.getdept(),E.getsalary(),E.getid())
+        self.cur.execute(sql % value)
         self.con.commit()
     def __del__(self):
         self.con.close()
