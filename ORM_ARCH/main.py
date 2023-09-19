@@ -5,8 +5,9 @@ import employeedao as empdao
 con1 = ms.MyConnection.getConnection()
 print("connection success!")
 E1=model.Employee()
-# for search one by id
-eid=int(input("Enter employee id for search: "))
+
+# for delete one by id
+eid=int(input("Enter employee id for delete: "))
 ed=empdao.EmployeeDao()
 E=ed.searchEmployee(eid)
 
@@ -15,8 +16,28 @@ if E is not None:
     print("emp name :", E.getname())
     print("emp dept :", E.getdept())
     print("emp salary :", E.getsalary())
+    choice=input("Are you sure want to delete (yes/no)")
+    if(choice=='yes'):
+        ed.deleteEmployee(eid)
+        print("record deleted")
+
 else:
     print(f"No employee found with ID {eid}")
+
+
+
+# for search one by id
+# eid=int(input("Enter employee id for search: "))
+# ed=empdao.EmployeeDao()
+# E=ed.searchEmployee(eid)
+#
+# if E is not None:
+#     print("emp id :", E.getid())
+#     print("emp name :", E.getname())
+#     print("emp dept :", E.getdept())
+#     print("emp salary :", E.getsalary())
+# else:
+#     print(f"No employee found with ID {eid}")
 # for insert......
 # eid=int(input("Enter employee id: "))
 # ename=input("Enter your name: ")
