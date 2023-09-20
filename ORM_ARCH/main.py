@@ -6,23 +6,39 @@ con1 = ms.MyConnection.getConnection()
 print("connection success!")
 E1=model.Employee()
 
-#update code
 
-eid=int(input("Enter employee id: "))
-ename=input("Enter your name for update: ")
-edept=input("Enter department for update: ")
-esalary=int(input("Enter your salary for update: "))
+#.......................search All......................
 
-E1.setid(eid)
-E1.setname(ename)
-E1.setdept(edept)
-E1.setsalary(esalary)
 ed=empdao.EmployeeDao()
-ed.updateEmployee(E1)
-print("record updated")
+myList1=ed.searchAll()
+for emp in myList1:
+    print(emp.getid(),end=" ")
+    print(emp.getname(), end=" ")
+    print(emp.getdept(), end=" ")
+    print(emp.getsalary())
 
 
-# for delete one by id
+
+
+
+#.................update code.................
+
+# eid=int(input("Enter employee id: "))
+# ename=input("Enter your name for update: ")
+# edept=input("Enter department for update: ")
+# esalary=int(input("Enter your salary for update: "))
+#
+# E1.setid(eid)
+# E1.setname(ename)
+# E1.setdept(edept)
+# E1.setsalary(esalary)
+# ed=empdao.EmployeeDao()
+# ed.updateEmployee(E1)
+# print("record updated")
+
+
+# ...................for delete one by id...................
+
 # eid=int(input("Enter employee id for delete: "))
 # ed=empdao.EmployeeDao()
 # E=ed.searchEmployee(eid)
@@ -42,7 +58,8 @@ print("record updated")
 
 
 
-# for search one by id
+# .................for search one by id........................
+
 # eid=int(input("Enter employee id for search: "))
 # ed=empdao.EmployeeDao()
 # E=ed.searchEmployee(eid)
@@ -54,7 +71,13 @@ print("record updated")
 #     print("emp salary :", E.getsalary())
 # else:
 #     print(f"No employee found with ID {eid}")
-# for insert......
+
+
+
+
+
+# ......................for insert...........................
+
 # eid=int(input("Enter employee id: "))
 # ename=input("Enter your name: ")
 # edept=input("Enter department: ")

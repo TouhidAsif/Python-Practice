@@ -30,6 +30,24 @@ class EmployeeDao:
             return E1
         except Exception as msg:
             print(msg)
+
+
+    def searchAll(self):
+        myList=[]
+        try:
+            sql="select * from employee"
+            self.cur.execute(sql)
+            result=self.cur.fetchall()
+            for row in result:
+                E1=model.Employee()
+                E1.setid(row[0])
+                E1.setname(row[1])
+                E1.setdept(row[2])
+                E1.setsalary(row[3])
+                myList.append(E1)
+            return myList
+        except Exception as obj:
+            print(obj)
     def deleteEmployee(self,empid):
         sql="delete from employee where id=%d"
         self.cur.execute(sql % empid)
